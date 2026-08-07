@@ -17,11 +17,13 @@ export const AuthProvider = ({ children }) => {
         setLoading(false);
     }, []);
 
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
     const register = async (name, email, password) => {
         setLoading(true);
         setError(null);
         try {
-            await axios.post('http://localhost:5000/api/auth/register', {
+            await axios.post(`${API_URL}/api/auth/register`, {
                 name,
                 email,
                 password,
@@ -40,7 +42,7 @@ export const AuthProvider = ({ children }) => {
         setLoading(true);
         setError(null);
         try {
-            const { data } = await axios.post('http://localhost:5000/api/auth/verify-otp', {
+            const { data } = await axios.post(`${API_URL}/api/auth/verify-otp`, {
                 email,
                 otp,
             });
@@ -59,7 +61,7 @@ export const AuthProvider = ({ children }) => {
         setLoading(true);
         setError(null);
         try {
-            const { data } = await axios.post('http://localhost:5000/api/auth/login', {
+            const { data } = await axios.post(`${API_URL}/api/auth/login`, {
                 email,
                 password,
             });
