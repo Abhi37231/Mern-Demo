@@ -64,7 +64,7 @@ const Register = () => {
                     />
                 </div>
                 <button type="submit" className="btn" disabled={loading}>
-                    {loading ? <span className="loader"></span> : 'Sign Up'}
+                    {loading ? <span className="loader"></span> : 'Get OTP'}
                 </button>
             </form>
             
