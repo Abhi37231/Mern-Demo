@@ -77,7 +77,7 @@ const registerUser = async (req, res) => {
             user.otp = undefined;
             user.otpExpires = undefined;
             await user.save();
-            return res.status(500).json({ message: 'Email could not be sent' });
+            return res.status(500).json({ message: err.message || 'Email could not be sent' });
         }
 
     } catch (error) {
