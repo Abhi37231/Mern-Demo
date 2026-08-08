@@ -5,7 +5,8 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
+    const [initialLoading, setInitialLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -14,7 +15,7 @@ export const AuthProvider = ({ children }) => {
         if (userInfo) {
             setUser(JSON.parse(userInfo));
         }
-        setLoading(false);
+        setInitialLoading(false);
     }, []);
 
     const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
@@ -89,7 +90,7 @@ export const AuthProvider = ({ children }) => {
     const clearError = () => setError(null);
 
     return (
-        <AuthContext.Provider value={{ user, loading, error, register, login, logout, clearError, verifyOtp }}>
+        <AuthContext.Provider value={{ user, loading, initialLoading, error, register, login, logout, clearError, verifyOtp }}>
             {children}
         </AuthContext.Provider>
     );

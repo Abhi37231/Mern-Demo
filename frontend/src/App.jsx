@@ -9,15 +9,15 @@ import Welcome from './pages/Welcome';
 import VerifyOtp from './pages/VerifyOtp';
 
 const ProtectedRoute = ({ children }) => {
-    const { user, loading } = useContext(AuthContext);
-    if (loading) return null;
+    const { user, initialLoading } = useContext(AuthContext);
+    if (initialLoading) return null;
     if (!user) return <Navigate to="/login" replace />;
     return children;
 };
 
 const PublicRoute = ({ children }) => {
-    const { user, loading } = useContext(AuthContext);
-    if (loading) return null;
+    const { user, initialLoading } = useContext(AuthContext);
+    if (initialLoading) return null;
     if (user) return <Navigate to="/" replace />;
     return children;
 };
