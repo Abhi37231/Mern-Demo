@@ -107,7 +107,10 @@ const verifyOtp = async (req, res) => {
             return res.status(400).json({ message: 'User already verified' });
         }
         
-        if (user.otp !== otp || user.otpExpires < Date.now()) {
+        const cleanOtp = otp.trim();
+
+        if (user.otp !== cleanOtp || user.otpExpires < Date.now()) {
+            console.log(`[OTP Debug] Expected: '${user.otp}', Received: '${cleanOtp}'. Expired? ${user.otpExpires < Date.now()}`);
             return res.status(400).json({ message: 'Invalid or expired OTP' });
         }
         
